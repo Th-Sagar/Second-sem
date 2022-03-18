@@ -1,0 +1,272 @@
+//Create a class Counter with data count. Use operator overloading of unary ++ operator for prefix and postfix operation. Use necessary function for data input and output. 
+#include<iostream>
+using namespace std;
+class counter {
+private :
+int a; 
+public :
+counter ()
+{
+    a=0;
+}
+
+void display ()
+{
+    cout<<"A :"<<a<<endl;
+}
+void operator ++()
+{
+    ++a;
+}
+void operator ++(int)
+{
+    a=a+10;
+}
+
+};
+int main()
+{
+    system("cls");
+    counter c;
+    cout<<"zero: "<<endl;
+    c.display();
+    ++c;
+    cout<<"original :"<<endl;
+    c.display();   
+    c++;
+    cout<<"after :"<<endl;
+    c.display();   
+
+}
+
+//Create a class Counter with data count. Use operator overloading of unary ++ operator for prefix and postfix operation with object return type. Use necessary function for data input and output and also store the increased value in object. 
+
+#include <iostream>
+using namespace std;
+class counter
+{
+    int count ;
+public:
+    counter(){
+    count = 0 ;
+    }
+    counter operator ++(){
+        counter c;
+        ++c.count ;
+        return c;
+    }
+       counter operator ++(int ){
+        counter c;
+      c.count+=2 ;
+        return c;
+    }
+    void display( counter c)
+    {
+        cout<<"cout "<< c.count<<endl;
+  }
+};
+ main()
+ {
+     system("cls");
+    counter c ;
+    c.display(c);
+    c=++c;
+    c.display(c);
+    c=c++;
+    c.display(c);
+ }
+// Write a C++ program to create constructor to assign constant value as 7. Perform unary operator for prefix and postfix separately returning the result.
+#include<iostream>
+using namespace std;
+
+class as
+{
+    int a;
+    public :
+    as()
+    {
+        a=7;
+    }
+    void display()
+    {
+        cout<<"Number :"<<a<<endl;
+    }
+    void operator ++()
+    {
+        ++a;
+    }
+
+    void operator ++(int)
+    {
+        a++;
+    }
+};
+
+int main()
+{
+    system("cls");
+    as b;
+    cout<<"Original :"<<endl;
+    b.display();
+    cout<<"prefix :"<<endl;
+    ++b;
+    b.display();
+    cout<<"postfix :"<<endl;
+    b++;
+    b.display();
+}
+
+//Create a class Time with data hrs, min and sec. Use operator overloading of unary ++ increment in second and maintain the timing properties of hour, minute and second. Use necessary function for data input and output. 
+#include<iostream>
+using namespace std;
+class tim {
+
+    int hr, min,sec;
+    public :
+    tim(int x , int y , int z )
+    {
+        hr =x;
+        min = y;
+        sec =z;
+    }
+    void display()
+    {
+        cout<<"Hour :"<<hr <<endl<<"Minute :"<<min<<endl<<"Second :"<<sec<<endl;
+    }
+    void operator ++()
+    {
+        ++sec;
+        if (sec>59)
+        {
+            min+=sec/60;
+            sec=sec%60;
+        }
+        if (min>59)
+        {
+            hr+=min/60;
+            min=min%60;
+        }
+    }
+    void operator ++(int)
+    {
+        sec++;
+        if (sec>59)
+        {
+            min+=sec/60;
+            sec=sec%60;
+        }
+        if (min>59)
+        {
+            hr+=min/60;
+            min=min%60;
+        }
+    } 
+
+};
+int main()
+{
+    system("cls");
+    tim t (1,59,59);
+    cout<<"normal :"<<endl;
+    t.display();
+    ++t;
+    cout<<"++1"<<endl;
+    t.display();
+    t++;
+    cout<<"1++"<<endl;
+    t.display();
+}
+
+//Write a c++ program using operator overloading of binary operator + for addition two real and imaginary number. Use necessary data & function to solve this problem. 
+#include<iostream>
+using namespace std;
+class complex 
+{
+
+    float a, b;
+    public :
+    complex ()
+    {
+        a=0;
+        b=0;
+
+    }
+    complex (float real ,float img)
+    {
+        a=real;
+        b=img;
+    }
+    complex operator +(complex );//outside class
+    // complex operator +(complex t )   //inside class
+    // {
+    //     complex c;
+    //     c.a =a+t.a;
+    //     c.b=b+t.b;
+    //     return c;
+    // }
+    void display()
+    {
+        cout<<a<<"+"<<b<<"i"<<endl;
+    }
+};
+complex complex :: operator +(complex t )  //outside class
+{
+        complex c;
+        c.a =a+t.a;
+        c.b=b+t.b;
+        return c;
+ }
+int main()
+{
+    system("cls");
+    complex c1(2,3);
+    complex c2(1,2);
+    complex c3;
+    c1.display();
+    c2.display();
+    c3=c1+c2;
+    c3.display();
+
+}
+
+
+//Write a C++ program using operator overloading of binary operator + for addition of two strings. Use necessary data and functions to solve this problem. 
+#include<iostream>
+#include<string>
+using namespace std;
+
+class st_ct
+{
+    string a;
+    public :
+    st_ct()
+    {
+        a="";
+    }
+
+    st_ct(string b)
+    {
+        a=b;
+    }
+    void display()
+    {
+        cout<<"string :"<<a<<endl;
+    }
+    st_ct operator +(st_ct san)
+    {
+        a = a + san.a;
+        return a;
+    }
+};
+
+int main()
+{
+    system("cls");
+    st_ct s1("trinity");
+    st_ct s2("college");
+    s1.display();
+    s2.display();
+    st_ct s3;
+    s3=s1+s2;
+    s3.display();
+}
