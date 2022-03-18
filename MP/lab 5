@@ -1,0 +1,59 @@
+;Write an assembly program to initialize Stack Pointer. ;First, insert three ;elements 0AH, 4EH, and FAH successively in the stack.; Then take out or ;retrieve each of the three elements from the stack one-by-one and store them in registers B, C, and D respectively.
+
+;LXI SP ,FFFFH
+;MVI B,0AH
+;MVI C,00H
+;PUSH B
+;MVI B, 4EH
+;MVI C,FAH
+;PUSH B
+;POP B
+;POP D
+;HLT
+
+;Use Subroutine to determine the square of an 8-bit integer 04H
+
+;MVI B,04H
+;MOV C,B
+;CALL XYZ
+;HLT
+;XYZ: ADD B
+;DCR C
+;JNZ XYZ
+;RET
+
+;Use Subroutine to determine the square root of two 8-bit integers 19H.
+
+MVI A,04H
+MVI B,02H
+CALL ADDER 
+HLT
+ ADDER: SUB B
+INR C
+JNZ ADDER
+RET
+
+;Use Subroutine to compute the following:
+;04H – A8H – 0AH + FFH – EDH + 71H – 0AH
+;Then check for carry and sign flags. ;If yes, store the carry and sign ;bits on register D and
+;E respectively.
+
+;MVI A,00H
+;CALL ADDER 
+;JNC XYZ 
+;INR D
+;XYZ : INR E
+;HLT
+;ADDER : ACI 04H
+;ACI FFH
+;ACI 71H
+;SBI A8H
+;SBI 0AH
+;SBI EDH
+;SBI 0AH 
+;RET
+
+
+
+
+
