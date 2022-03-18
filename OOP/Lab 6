@@ -1,0 +1,393 @@
+//i	Create a class rectangle with member data to represent length, breadth and area. Use appropriate member functions to read length and breadth from user and to calculate area of a rectangle. Next create a derived class called box from class rectangle. Use appropriate member function to read height and to calculate volume of box. 
+#include<iostream>
+using namespace std;
+class Rectangle{
+private :
+int area;
+protected:
+int length,breadth;
+public :
+void getdata()
+{
+   cout<<"enter length and breadth :"<<endl;
+    cin>>length>>breadth;
+}
+int process()
+{
+    area=length*breadth;
+    return area;
+}
+void display()
+{
+    cout<<"Area :"<<process();
+}
+};
+class Box : public Rectangle
+{
+private :
+int volume ,height;
+public :
+void get()
+{
+  cout<<endl<<"enter height :"<<endl;
+    cin>>height;
+}
+int pro()
+{
+    volume=length*breadth*height;
+    return volume;
+}
+void out()
+{
+    cout<<"Volume :"<<pro();
+}
+
+};
+int main ()
+{
+    Rectangle r1;
+    r1.getdata();
+    r1.process();
+    r1.display();
+
+    
+    Box r2;
+    r2.getdata();
+    r2.get();
+    r2.pro();
+    r2.out();
+}
+
+
+//ii	Create a class student with two member data name and roll. Derive a class marks from student that has additional data members, session1, session2 to store session marks. Derive another class result from marks and add the session marks. Use appropriate member functions to read and display data in class. 
+#include<iostream>
+using namespace std;
+class students
+{
+    private :
+  int roll;
+  char name[20];
+  public:
+  void getdata()
+  {
+      cout<<"enter name and roll no :"<<endl;
+      cin>>name>>roll;
+  } 
+  void process()
+  {
+      cout<<"name :"<<name<<endl;
+      cout<<"roll no :"<<roll<<endl;
+  }
+};
+class marks: public students
+{
+
+protected :
+int  session1,session2;
+public :
+void in()
+{
+    cout<<"enter mark1 and second :"<<endl;
+    cin>> session1>>session2;
+}
+void pro()
+{
+    cout<<"mark 1 :"<<  session1<<endl;
+    cout<<"mark 2 :"<< session2<<endl;
+}
+};
+class result: public marks
+{
+
+protected :
+int su;
+public :
+void proc()
+{
+    su= session1+session2;
+    cout<<"sum of marks :"<<su;
+}
+};
+int main ()
+{
+    system("cls");
+     result s;
+    s.getdata();
+    s.process();
+   // marks s1;
+    s.in();
+    s.pro();
+   // result s2;
+    s.in();
+    s.proc();
+}
+
+
+//iii	Create a class student with two member data to represent name and age of student. 
+//Use member functions to read and print data. 
+//From this class derive a class called boarder with a member data to represent room number.
+// Derive another class called dayscholar from the class student with a member data to represent address of student. 
+
+#include<iostream>
+using namespace std;
+
+class students {
+protected :
+int age;
+char name[20];
+public :
+void read(){
+
+    cout<<"enter name and age of the students :"<<endl;
+    cin>>name>>age;
+}
+void print_data(){
+cout<<"Name :"<<name<<endl;
+cout<<"Age :"<<age<<endl;
+}
+};
+
+class boarder : public students {
+protected :
+int room;
+public :
+void room_in(){
+    cout<<"Enter Room No  :"<<endl;
+    cin>>room;
+}
+void display(){
+cout<<"Room No  :"<<room<<endl;
+}
+};
+
+class dayscholars : public students
+{
+ char add[20];
+ public :
+ void in_getdata()
+ {
+  cout<<"Enter address :"<<endl;
+  cin>>add;
+ }
+ void show()
+ {
+     cout<<"Address :"<<add<<endl;
+ }
+};
+int main ()
+{
+    dayscholars s;
+    boarder s1;
+    s.read();
+    s1.room_in();
+    s.in_getdata();
+    s.print_data();
+    s1.display();
+    s.show();    
+    }
+
+//Create the following inheritance and find the total of each value from the individual class 
+#include<iostream>
+using namespace std;
+
+class SetA{
+
+protected :
+int a;
+public :
+void getA(){
+    cout<<"enter Set A :"<<endl;
+    cin>>a; 
+}
+void displayA()
+{
+    cout<<"A no :"<<a<<endl;
+}
+
+};
+
+class SetB :virtual public SetA
+{
+
+protected :
+int b;
+public :
+void getB(){
+    cout<<"enter Set B :"<<endl;
+    cin>>b; 
+}
+void displayB()
+{
+    cout<<"B no :"<<b<<endl;
+}
+
+};
+class SetC : virtual public SetA
+{
+
+protected :
+int c;
+public :
+void getC(){
+    cout<<"enter Set C :"<<endl;
+    cin>>c; 
+}
+void displayC()
+{
+    cout<<"C no :"<<c<<endl;
+}
+
+};
+
+
+class SetD : public SetB
+{
+
+protected :
+int d;
+public :
+void getD(){
+    cout<<"enter Set D :"<<endl;
+    cin>>d; 
+}
+void displayD()
+{
+    cout<<"D no :"<<d<<endl;
+}
+};
+
+
+class SetE : public SetC,public SetD
+{
+
+protected :
+int e;
+public :
+void getE(){
+    e=a+b+d+c;
+   
+}
+void displayE()
+{
+    cout<<"Sum of no :"<<e<<endl;
+}
+
+};
+
+int main ()
+{
+  
+    system("cls");
+    SetE se;
+    se.getA();
+    se.getB();
+    se.getC();
+    se.getD();
+    se.getE();
+    se.displayA();
+    se.displayB();
+    se.displayC();
+    se.displayD();
+    se.displayE();
+
+
+}
+
+
+#include <iostream>
+using namespace std;
+class A
+{
+  public:
+    void display()
+    {
+        cout <<"This is class A "<<endl;
+    }
+};
+
+class B
+{
+  public:
+    void display()
+    {
+        cout <<"This is class B "<<endl;
+    }
+};
+
+class C: public A, public B
+
+{
+  public:
+  void display()
+  {
+      A::display();
+      B::display();
+  }
+};
+
+int main()
+{
+    C sample;
+    sample.display();  
+
+}
+
+//vi)	Create a class name general_info having name, age, address with read() function (to enter the required field) and display() function (to display the required information. Create academic_info class to read degree and display the information. Create another class employee to read and display status. Solve this problem using nesting of classes. 
+#include<iostream>
+using namespace std;
+class general_info
+{
+	char name[20],address[30];
+	int age;
+	public:
+		void read()
+		{
+			cout<<"Enter name age address:"<<endl;
+			cin>>name>>age>>address;
+		}
+		void display()
+		{
+			cout<<"Name : "<<name<<endl<<"Age : "<<age<<endl<<"Address : "<<address<<endl;
+		}
+};
+class academic_info
+{
+	char degree[20];
+	general_info a;
+	public:
+		void read()
+		{
+			a.read();
+			cout<<"Enter degree:"<<endl;
+			cin>>degree;
+		}
+		void display()
+		{
+			a.display();
+			cout<<"Degree : "<<degree<<endl;
+		}
+};
+class employee
+{
+	char status[20];
+	academic_info b;
+	public:
+		void read()
+		{
+			b.read();
+			cout<<"Enter status:"<<endl;
+			cin>>status;
+		}
+		void display()
+		{
+			b.display();
+			cout<<"Status : "<<status<<endl;
+		}
+};
+int main()
+{
+	employee e;
+	e.read();
+    cout<<endl<<"Info"<<endl;
+	e.display();
+}
