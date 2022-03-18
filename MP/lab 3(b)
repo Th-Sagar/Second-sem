@@ -1,0 +1,60 @@
+;Qn 1 WAP to add two 8-bit numbers.
+;LHLD 2020H               
+;MOV A,H               
+;ADD L                    
+;JC NEXT            
+;STA 2050H              
+;OUT 2AH
+;HLT
+;NEXT : CMA               
+;ANI F0H                  
+;MOV C,A           
+;JP HONK                       
+;HONK : STA 2050H                    
+;OUT 2AH          
+;HLT           
+ 
+;2 WAP to AND two 8-bit numbers
+LHLD 2020H
+MOV A,H
+ANA L
+JZ YESC
+CMA
+MOV D,A
+HLT
+YESC: JM CCC
+MVI B,08H
+ADD B
+MOV D,A
+HLT
+CCC : CMA
+MOV D,A
+HLT
+
+; QN 3  WAP to perforam a Logical Operation ORI 7FH with ABH
+; A, ABH
+;ORI 7FH 
+;JPO YESC
+;JC  COMPARE
+;CMA
+;MOV B,A
+;HLT
+;COMPARE: CMA
+;MVI B,45H
+;ADC B
+;STA 30FAH
+;HLT
+;YESC: JM  SCHOOL
+ ;             MOV D,A
+ ;             MVI E,5FH
+  ;            MOV A,E
+   ;           CMA 
+    ;          MOV E,A
+     ;         MOV A,D
+       ;       SUB E
+      ;        MOV E,A
+        ;      HLT
+         ;    SCHOOL: CMA 
+          ;   INR A
+           ;  STA 1050
+            ; HLT
