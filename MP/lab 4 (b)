@@ -1,0 +1,63 @@
+;Write a program to multiply two 8-bit numbers 03H and 04H. 
+
+;a by Repeated Addition Method
+
+;MVI A, 00H
+;MVI B, 03H
+;MOV C,B
+;MVI D,04H
+
+;ADDER : 
+;ADD D
+;DCR C
+;JNZ ADDER
+;HLT
+
+
+;by Rotation Method
+;LXI H ,2050H
+;MOV E,M
+;LXI H, 2020H
+;MOV A,M
+;MVI B, 08H
+;LOOP : DAD H
+;RAL
+;JNC SKIP
+;DAD D
+;SKIP: DCR B 
+;JNZ LOOP
+;SHLD 2055H
+;HLT
+
+;Write a program to divide 0EH data byte by 07H data byte
+
+;A) by Repeated Subtraction Method 
+
+;;MVI A, 0EH
+;MVI B, 07H
+;ADDER : 
+;CMP B
+;JC SKIP 
+;SUB B
+;INR C
+;JMP ADDER
+;SKIP :
+;STA 2020
+;MOV A,C
+;STA 2021H
+;HLT
+
+;by Rotation Method. 
+
+
+; Write a program to multiply 16-bit number 403AH by 8-bit number 04H
+LXI D,403AH
+MVI C,04H
+HI : DAD D
+DCR C
+JNZ HI
+;SHLD 2025H
+HLT
+
+
+
