@@ -1,0 +1,143 @@
+// Qn1 WAP for the addition of two 8-bit numbers with carry.
+
+;MVI C,00H
+; MVI A, EFH
+; MVI B,FCH
+; ADD B
+ ;JC YESC
+; STA 2050H
+; HLT
+; YESC : INR C
+; MOV D,A
+;STA 2050
+; HLT
+
+// Qn2 WAP for the addition of two 16-bit numbers with carry
+
+;MVI C,00H
+; LHLD 2015H
+;XCHG
+ ;LHLD 2020
+ ;DAD D
+;JC TIGER 
+; SHLD 2025
+;HLT
+;TIGER : INR C
+;SHLD 2025
+;HLT
+
+// qn3 Write a program to add the content of 9101H and 9102H and place the sum at 9103H and carry at 9104H.
+
+
+;LHLD 9101H
+;MOV A,L
+;ADD H
+;STA 9103H
+;JC TIGER
+;MVI A, 00H
+;STA 9104H
+;HLT 
+;TIGER : INR A
+;STA 9104H
+;HLT
+
+;qn 4  WAP for the subtraction of two 8-bit numbers with borrow.
+;LHLD 2020
+;MOV A,H
+;SUB L
+;MVI B,00H
+;JC LION
+;STA 2022
+;HLT
+;LION :INR B
+;STA 2022
+;HLT 
+;SBB L
+
+;QN 5 WAP for the subtraction of two 16-bit numbers with borrow
+
+;LHLD 2020H 
+;XCHG
+;LHLD 2025H
+;MOV A,E
+;SUB L
+;MOV L,A 
+;JC YESC
+;YESC:MOV A,D
+;SBB H
+;MOV H,A
+;SHLD 2030H
+;HLT
+
+;QN 6  WAP to subtract the content of register C from register D and store the register H and borrow at register L
+
+;MVI D ,01H
+;MOV A,D
+;MVI C, 02H
+;SUB C
+;MVI L,00H
+;JC HI
+;MOV H,A
+;HLT
+;HI : INR L
+;MOV H,A 
+;HLT
+
+;QN 7 WAP to create a continuous loop using unconditional Jump Instruction
+
+;MVI C,00H
+ ;MVI A, EFH
+ ;MVI B,FCH
+ ;ADD B
+;JC 1234
+ ;STA 2050H
+ ;HLT
+ ;1234 : INR C
+; MOV D,A
+;STA 2050
+ ;HLT
+
+
+;QN 8 Write a program to test the Jump on Zero (JZ =1) condition on an arithmetic operation 
+
+;MVI A, F0H
+;MVI B,F0H
+;SUB B
+;JZ  LABEL
+;INR B
+;INR B
+;LABEL : INR A
+;HLT
+
+;QN 9 Write a program to test the Jump on Even Parity (JPE =1) condition on any logical operation
+
+;MVI A, F0H
+;MVI B,F0H
+;SUB B
+;JPE  LABEL
+;INR B
+;INR B
+;LABEL : INR A
+;HLT
+
+
+; QN 10 Write a program to test the Jump on Negative (S=1) condition on an arithmetic operation.
+
+;MVI A, 13H
+;MVI B,15H
+;SUB B
+;JM  LABEL
+;INR B
+;INR B
+;LABEL : INR A
+;HLT
+
+
+;JUMP LOOP 
+
+ MVI A,05H
+MVI B,06H
+ADD B
+CMA
+JMP  0000
+HLT
