@@ -1,0 +1,114 @@
+;1 Write a program to rotate left the data byte 84H four times
+;MVI A,84H
+;;RLC
+;;RLC
+;RLC
+;RLC
+;STA 2020
+;HLT
+
+
+;2 Write a program to rotate right the data byte F7H two times.
+;MVI A,F7H
+;RRC
+;RRC
+;STA 2020
+;HLT
+
+
+;3 Write a program to rotate left with carry the result of addition (AAH + EEH) three times.
+
+;MVI B, AAH
+;MVI A, EEH 
+;ADD A
+;RAL 
+;RAL
+;RAL
+;STA 2020
+;HLT
+
+;4  Write a program to rotate right with carry the result of subtraction (DEH â€“ FAH) two times. 
+
+;MVI B, FAH
+;MVI A,DEH
+;SUB B
+;RAR
+;RAR
+;STA 2020
+;HLT
+
+;5 WAP to subtract D7H from A9H. ;If borrow exists, rotate left with carry five times. ;Then subtract with borrow A9H from accumulatorâ€™s content. ;Otherwise terminate. 
+
+
+;MVI A,A9H
+;MVI B,D7H
+;SUB B
+;JC SA
+;HLT
+; SA: RAL
+;;RAL
+;RAL
+;RAL
+;RAL
+
+;SBI A9H
+;STA 2020
+;HLT
+
+;6 WAP to add two 1-byte integers 84H and F7H. ;If carry exists, rotate right with carry the accumulator result three times. ;Otherwise terminate. 
+
+;MVI B,F7H
+;MVI A,84H
+;ADD B
+;JC SO
+;HLT
+;SO:RAR
+;RAR
+;RAR
+;STA 2020
+;HLT
+
+;7 Write a program to subtract CDH from ABH. ;If result is negative, express 2â€™s complement result in original difference form in register H. ;Also save the sign bit in register L. ;Then copy Hâ€™s content to E. ;Perform necessary operations to shift Eâ€™s bits right five times. ;Perform necessary operations to add Eâ€™s content with FFH. ;After that, add with carry whatever is in Aâ€™s content with Hâ€™s content. ;Then, rotate right with carry Aâ€™s content 2 times. ;Otherwise terminate.
+
+MVI L,00H
+MVI B, CDH
+MVI A, ABH
+SUB B
+JM SO
+SO : CMA
+ADI 01H
+MOV H,A
+INR L
+MOV E,H
+MOV A,E
+RRC
+RRC
+RRC
+RRC
+RRC 
+MOV A,E
+ADI FFH
+MOV E,A
+ADC H
+RAR
+RAR
+HLT
+ 
+
+
+
+
+
+;MVI C,00H
+;LHLD 2020H
+;MOV A,H
+;ADD L
+;JC AA
+;STA 2022
+;HLT
+;AA:INR C
+;STA 2050
+;MOV A,C
+;STA 2051
+;HLT
+
