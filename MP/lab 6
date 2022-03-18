@@ -1,0 +1,27 @@
+;Write a program to copy the content of table starting from 9000H to 9100H. ;Assume there are 5 data.
+;LXI H,9000H
+;LXI D,9100H
+;MVI C,05H
+;ADDER :MOV A,M
+;STAX D
+;INX H
+;INX D
+;DCR C
+;JNZ ADDER
+;HLT
+
+;Write a program to copy the content of table starting from 9000H to 9100H in reverse order. ;Assume there are 5 data.
+
+
+;LXI H,9000H
+;LXI D,9100H
+;MVI C,05H
+;ADDER :MOV A,M
+;STAX D
+;INX H
+;DCX D
+;DCR C
+;JNZ ADDER
+;HLT
+
+
