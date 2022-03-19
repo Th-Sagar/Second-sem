@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+class ratio 
+{
+public :
+float a,b;
+void get()
+{
+    cout<<"Enter Num. and Den. :"<<endl;
+    cin>>a>>b;
+}
+void display ()
+{
+    cout<<"Num."<<a<<endl<<"Den."<<b<<endl;
+}
+int operator ==(ratio);
+};
+
+int ratio :: operator ==(ratio m1)
+{
+    float mm1=a/b;
+    float mm2= m1.a/m1.a;
+    if(mm1=mm2)
+    return 1;
+    else 
+    return 0;
+} 
+int main()
+{
+    system("cls");
+    ratio m,m2;
+    m.get();
+    m2.get();
+    m.display();
+    m2.display();
+    if(m==m2)
+    {
+        cout<<"First and Second no. are equal ."<<endl;
+    } 
+    else 
+    {
+        cout<<"Second and Second no. aren`t equal ."<<endl;
+    }
+}
