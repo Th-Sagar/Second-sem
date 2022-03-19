@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+class money 
+{
+public :
+float rs, pa;
+void get()
+{
+    cout<<"Enter Rs. and Pa. :"<<endl;
+    cin>>rs>>pa;
+}
+void display ()
+{
+    cout<<"Rs."<<rs<<endl<<"Pa."<<pa<<endl;
+}
+int operator >(money);
+};
+
+int money :: operator>(money m1)
+{
+    float mm1=rs+pa/100;
+    float mm2= m1.rs+m1.pa/100;
+    if(mm1>mm2)
+    return 1;
+    else 
+    return 0;
+} 
+int main()
+{
+    system("cls");
+    money m,m2;
+    m.get();
+    m2.get();
+    m.display();
+    m2.display();
+    if(m>m2)
+    {
+        cout<<"First amount is greater ."<<endl;
+    } 
+    else 
+    {
+        cout<<"Second amount is greater ."<<endl;
+    }
+}
