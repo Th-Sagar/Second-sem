@@ -270,3 +270,49 @@ int main()
     s3=s1+s2;
     s3.display();
 }
+ 
+ 
+ 
+ qn 6 
+    OR
+    //Write a C++ program using operator overloading of binary operator + for addition of two strings. Use necessary data and functions to solve this problem. 
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class st_ct
+{
+   char a[20];
+    public :
+    st_ct()
+    {
+        strcpy(a,"");
+    }
+
+    st_ct(char b[20])
+    {
+        strcpy(a,b);
+    }
+    void display()
+    {
+        cout<<"string :"<<a<<endl;
+    }
+    st_ct operator +(st_ct san)
+    {
+        // a = a + san.a;
+        strcat (a,san.a);
+        return a;
+    }
+};
+
+int main()
+{
+    system("cls");
+    st_ct s1("trinity");
+    st_ct s2("college");
+    s1.display();
+    s2.display();
+    st_ct s3;
+    s3=s1+s2;
+    s3.display();
+}   
