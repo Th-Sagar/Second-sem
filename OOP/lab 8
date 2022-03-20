@@ -1,0 +1,77 @@
+QN1) 
+#include<iostream>
+using namespace std;
+class person
+{
+public:
+int age;
+char name[20];
+public:
+void read_age()
+{
+cout<<"Enter age:"<<endl;
+cin>>age;
+}
+void read_name()
+{
+cout<<"Enter name:"<<endl;
+cin>>name;
+}
+void display()
+{
+cout<<"Name:"<<name<<endl<<"Age:"<<age<<endl;
+}
+
+};
+class student :public person
+{
+int serial_no,percentage;
+public:
+person p;
+
+void read_serial_no()
+{
+p.read_name();
+p.read_age();
+cout<<"Enter serial no:"<<endl;
+cin>>serial_no;
+}
+void read_percentage()
+{
+cout<<"Enter percentage:"<<endl;
+cin>>percentage;
+}
+void information()
+{
+
+p.display();
+cout<<"Serial No."<<serial_no<<endl;
+if (percentage>=80)
+{
+cout<<"outstanding"<<endl;
+}
+else if(percentage>=70)
+{
+cout<<"medium"<<endl;
+}
+else
+{
+cout<<"poor"<<endl;
+}
+
+}
+};
+int main()
+{
+student s1;
+
+
+s1.read_serial_no();
+s1.read_percentage();
+s1.information();
+}
+
+
+QN2)
+
+
