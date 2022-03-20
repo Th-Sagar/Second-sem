@@ -24,14 +24,21 @@
 
 ;Use Subroutine to determine the square root of two 8-bit integers 19H.
 
-MVI A,04H
-MVI B,02H
-CALL ADDER 
-HLT
- ADDER: SUB B
-INR C
-JNZ ADDER
-RET
+;MVI D,01H
+;MVI E,01H
+;MVI A,19H
+;STA 2050
+;CALL ADDER 
+;HLT
+ ;ADDER: SUB D
+;JZ XYZ
+;INR D
+;INR D
+;INR E
+;JMP ADDER
+;XYZ : MOV A,E
+;STA 2055
+;RET
 
 ;Use Subroutine to compute the following:
 ;04H – A8H – 0AH + FFH – EDH + 71H – 0AH
@@ -40,7 +47,7 @@ RET
 
 ;MVI A,00H
 ;CALL ADDER 
-;JNC XYZ 
+;JNC XYZ ;
 ;INR D
 ;XYZ : INR E
 ;HLT
@@ -52,6 +59,42 @@ RET
 ;SBI EDH
 ;SBI 0AH 
 ;RET
+
+;Use Subroutine/s to determine the square and square root of two 8-bit integers 10H and 31H.
+
+
+
+
+
+MVI D,01H
+MVI E,01H
+MVI H,31H
+CALL SQROOT
+CALL SQ
+STA 2060
+HLT
+SQROOT : 
+MOV A,H
+STA 2050
+AA :SUB D
+JZ XYZ
+INR D
+INR D
+INR E
+JMP AA
+XYZ : MOV A,E
+STA 2055
+RET
+
+SQ :MVI A,00H
+MVI C,00H
+MVI B,10H
+MOV C,B
+XY: ADD B
+DCR C
+JNZ XY
+RET
+
 
 
 
