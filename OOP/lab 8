@@ -74,4 +74,68 @@ s1.information();
 
 QN2)
 
+//Write three derived classes inheriting functionality of base class person (should have a member
+//function that asks to enter name and age) and with added unique features of student, and employee,
+//and functionality to assign, change and delete records of student and employee. And make one member
+//function for printing address of the objects of classes (base and derived) using this pointer. 
+//Create two objects of base class and derived classes each and print the addresses of individual 
+//objects. Using calculator, calculate the address space occupied by each object and verify this with 
+//address spaces printed by the program.
+#include<iostream>
+using namespace std;
+class person
+{
+public:
+char name[20];
+int age;
+void getdata()
+{
+    cout<<"Enter name and age :"<<endl;
+    cin>>name>>age;
+}
+void display()
+{
+    cout<<"Name :"<<name<<endl<<"Age :"<<age<<endl;
+}
 
+};
+class student : public person
+{
+public :
+person p1;
+char d;
+void delet_data()
+{
+    cout<<"Student Info :"<<endl;
+    p1.getdata();
+    p1.display();
+    cout<<"Do you want to delete :"<<endl;
+    cin>>d;
+    if (d=='Y'||d=='y')
+    {
+        cout<<"New :"<<endl;
+        p1.getdata();
+        p1.display();
+     
+    }
+    else 
+    {
+        p1.display();
+    }
+}
+};
+int main()
+{
+    system("cls");
+   student p[10];
+   int n,i;
+   cout<<"enter how many no :"<<endl;
+   cin>>n;
+   for(i=1;i<=n;i++)
+   {
+    p[i].delet_data();
+   }
+   
+    
+
+}
