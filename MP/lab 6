@@ -25,3 +25,44 @@
 ;HLT
 
 
+;Write a program to transfer 10 data from table 9000H to 9100H only if numbers are greater than 80H, else transfer them to the table from 9200H.
+
+;LXI H,9000H
+;LXI D,9100H
+;LXI B,9200H
+;XYZ : MOV A,M
+;CPI 80H
+;JC ABC 
+;STAX D 
+;INX H 
+;INX D 
+;MOV A,L 
+;CPI 09H
+;JNZ XYZ 
+;HLT 
+;ABC : STAX B
+;INX H 
+;INX B 
+;MOV A,L
+;CPI 09H 
+;JNZ XYZ
+;HLT
+
+;Write a program to swap the content of table starting with 9000H and 9100H. ;Assume there are 10 data on each table. 
+
+MVI C,0AH
+LXI D,9100H
+LXI H, 9000H
+LOOP: MOV B,M
+LDAX D
+MOV M,A
+MOV A,B
+STAX D
+INX H
+INX D
+DCR C
+JNZ LOOP
+HLT
+
+
+
