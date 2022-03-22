@@ -1,0 +1,34 @@
+#include<iostream>
+using namespace std;
+class distances
+{
+public:
+float m,feet,inch;
+distances()
+{
+m=0;
+}
+distances(int m1)
+{
+m=m1;
+}
+void process()
+{
+float mtf;
+mtf=3.28084*m;
+feet=int(mtf);
+inch=12*(mtf-feet);
+}
+void display()
+{
+cout<<"Feet:"<<feet<<endl<<"Inch:"<<inch<<endl;
+}
+};
+int main()
+{
+    system("cls");
+ distances g(9);
+ g.process();
+ g.display();
+
+}
