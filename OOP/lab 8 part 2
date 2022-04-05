@@ -1,0 +1,105 @@
+//Write a program to create a class ITEM having getdata() and showdata() function. getdata should get data code and price from main and showdata to display the contents. Use pointer to enter data and display the contents.
+#include<iostream>
+using namespace std;
+class item
+{
+    protected:
+    int code;
+    float price;
+    public:
+    void getdata()
+    {
+        cout<<"Enter the code and price of the item:"<<endl;
+        cin>>code>>price;
+    }
+    void showdata()
+    {
+        cout<<"Code:"<<code<<endl;
+        cout<<"Price:"<<price<<endl;
+    }
+
+};
+int main()
+{
+    item *itemptr;
+    itemptr=new item;
+    itemptr->getdata();
+    itemptr->showdata();
+}
+
+
+//Write a program to create a class shape with functions to find area of the shapes and display the name of the shape and other essential component of the class. Create derived classes circle, rectangle and trapezoid each having overridden functions area and display. Write a suitable program to illustrate virtual functions and virtual destructor.
+
+#include<iostream>
+using namespace std;
+class shape
+{
+protected:
+float aoc,aor,aot,r,l,b,b1,b2,h;
+public:
+virtual void area()
+{
+}
+virtual void display()
+{
+}
+};
+class circle:public shape
+{
+public:
+void area()
+{
+cout<<"Enter the radius of the circle:"<<endl;
+cin>>r;
+aoc=3.14*r*r;
+}
+void display()
+{
+cout<<"Area of circle:"<<aoc<<endl;
+}
+};
+class rectangle:public shape
+{
+public:
+void area()
+{
+cout<<"Enter the length and breadth of the rectangle:"<<endl;
+cin>>l>>b;
+aor=l*b;
+}
+void display()
+{
+cout<<"Area of rectangle:"<<aor<<endl;
+}
+};
+class trapezoidal:public shape
+{
+public:
+void area()
+{
+cout<<"Enter the two sides of the trapezoidal and the height:"<<endl;
+cin>>b1>>b2>>h;
+aot=0.5*(b1+b2)*h;
+}
+void display()
+{
+cout<<"Area of trapezoidal:"<<aot<<endl;
+}
+};
+
+main()
+{
+shape *shapeptr;
+circle c;
+rectangle r;
+trapezoidal t;
+shapeptr=&c;
+shapeptr->area();
+shapeptr->display();
+shapeptr=&r;
+shapeptr->area();
+shapeptr->display();
+shapeptr=&t;
+shapeptr->area();
+shapeptr->display();
+}
