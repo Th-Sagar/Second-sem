@@ -1,0 +1,147 @@
+.model tiny
+.data
+   msg db 10,13, "Hello! My name is SAGAR THAPA.$" 
+    msg1 db 10,13, "I am student at Trinity International College.$"
+    msg2 db 10,13, "I am affiliated to BSc.CSIT.$" 
+.code
+    begin:
+    mov ax,@data;moves memory location of @data into axregister
+    mov ds,ax   ;to access varaibles
+    
+    lea dx,msg  ;indirect instruction uses as a pointer in which 1st variable points address of 2nd variable
+    mov ah,9     ;function no. to output string 
+    int 21h  
+    
+    lea dx,msg1  ;indirect instruction uses as a pointer in which 1st variable points address of 2nd variable
+    mov ah,9     ;function no. to output string 
+    int 21h
+     
+    lea dx,msg2  ;indirect instruction uses as a pointer in which 1st variable points address of 2nd variable
+    mov ah,9     ;function no. to output string 
+    int 21h  
+       ;
+    
+    mov ah,4ch     ;condition to 
+    int 21h
+    
+    end begin           
+    
+    
+;Q)WAP to check if two entered no are equal or not.
+
+;data segment 
+;msg1 db "Enter 1st no:::$"
+;msg2 db 10,13, "Enter 2nd no:::$" 
+;msg3 db 10,13, "The no.s are EQUAL.$"
+;msg4 db 10,13, "Theno.s are NOT EQUAL.$" 
+;ends
+
+;code segment
+;    assume cs:code ds:data
+;    begin:
+    
+;    mov ax,@data
+;    mov ds,ax
+    
+    ;display 1st no
+;    lea dx,msg1
+;    mov ah,9
+;    int 21h
+    
+    ;input 1st no
+;    mov ah,1
+;    int 21h
+    
+;    mov cl,al;move 1st no to cl register
+    
+    ;display 2nd no  
+;    lea dx,msg2
+;    mov ah,9
+;    int 21h
+    
+    ;input 2nd no
+;    mov ah,01
+;    int 21h
+    
+;    mov dl,al ;move 2nd no to dl register
+;    cmp dl,cl ;compare two nos 
+    
+    ;if two nos are not equal 
+;    je loop1;jump if equal
+    
+;    lea dx,msg4
+;    mov ah,9
+;    int 21h
+    
+;    jmp exit
+                 
+;    loop1:  lea dx,msg3
+;            mov ah,9
+;            int 21h  
+            
+            
+;    exit: mov ah,4ch
+;          int 21h
+;          
+ ;       end begin        
+
+
+;Q)WAP in 8086 to swap two numbers : 97hand 79h
+
+;data segment
+ ;   num1 db 97h
+  ;  num2 db 79h
+    
+;ends
+
+;code segment
+ ;   assume ds:data cs:code
+  ;  begin:
+    
+;    mov ax,data
+ ;   mov ds,ax
+    
+  ;  mov al,num1
+   ; mov bl,num2
+    
+   ;xchg al,num2  
+  ;  xchg bl,num1
+    
+    ;to exit
+    ;;mov ah,4ch
+ ;  int 21h
+;    end begin
+    
+    
+    
+;Q)WAP to 8086 to print the following string in reverse "mdj ama lmcal"
+
+;data segment 
+;    str1 db "Sas aBbA sAs$"
+;ends
+
+;code segment
+;    assume ds:data cs:code
+;    begin:
+;;    
+ ;   mov ax,@data
+ ;   mov ds,ax
+    
+;    mov si,offset str1 ;points 1st index of string
+    
+;    mov cx,12
+;    loop1:
+;        mov bx,[si]
+;        push bx
+;        inc si
+;        loop loop1
+        
+;        mov cx,12
+    
+;    loop2:
+;;        pop dx 
+        ;print each character
+;        mov ah,2
+;        int 21h
+;        loop loop2
+;        end begin
