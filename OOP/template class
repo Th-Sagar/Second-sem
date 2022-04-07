@@ -1,0 +1,125 @@
+#include<iostream>
+#include<string>
+using namespace std;
+template <class T>
+class Stack
+{
+  private:
+  T s[100];
+  int tos;
+  public:
+  Stack()
+    {
+        tos=-1;
+
+    }
+    void push(T a)
+    {
+       s[++tos]=a;
+    }
+    T pop()
+    {
+       return s[tos--];
+    }
+};
+
+int main()
+{
+   Stack<float> s1;
+   s1.push(10);
+    cout<<"no pop :"<<s1.pop()<<endl;
+}
+
+
+
+#include<iostream>
+using namespace std;
+int max1(int,int);
+long max1(long,long);
+float max1(float,float);
+char max1(char,char);
+
+int main()
+{
+int i1=15,i2=20;
+cout<<"Greater no = "<<max1(i1,i2)<<endl;
+
+long l1=40000, l2 =3100000;
+cout<<"greater no ="<<max1(l1,l2)<<endl;
+
+float f1=2.22,f2=3.3;
+cout<<"greater no ="<<max1(f1,f2)<<endl;
+
+char c1='a',c2='A';
+cout<<"greater no ="<<max1(c1,c2)<<endl;
+}
+int max1(int a,int b)
+{
+return (a>b?a:b);
+}
+
+long max1(long a,long b)
+{
+return (a>b?a:b);
+}
+
+float max1(float a,float b)
+{
+return (a>b?a:b);
+}
+
+char max1(char a,char b)
+{
+return (a>b?a:b);
+}
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+template <class T>
+T max1(T a , T b)
+{
+return (a>b ? a:b);
+}
+char *max1(char *a,char *b)
+{
+if(strcmp(a,b)>0)
+return a;
+else
+return b;
+}
+int main ()
+{
+int i1=15,i2=20;
+cout<<"Greater is "<<max1<int>(i1,i2)<<endl;
+char str1[]="Apple",str2[]="Ball";
+cout<<"Greater is "<<max1(str1,str2);
+}
+
+
+#include<iostream>
+using namespace std;
+template<class T>
+void print(T a)
+{
+    cout<<a<<endl;
+}
+template<class T>
+void print(T a,int b)
+{ 
+    int i;
+    for(i=0;i<b;i++)
+    {
+        cout<<a<<endl;
+    }
+}
+int main()
+{
+    print(9);
+    print(1,5);
+}
+
+
+
+
+
