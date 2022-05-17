@@ -1,0 +1,123 @@
+#include<iostream>
+#define Number_easy 4
+#define Number_medium 4
+#define Number_hard 99
+using namespace std;
+int main()
+{
+    int select_mode;
+    int choice_option,number_easy,number_medium,number_hard,i;
+    char repeat;
+   do{
+        cout<<" 1. For more information about the game"<<endl;
+        cout<<" 2. To play the game"<<endl;
+        cout<<" 3. To exit"<<endl;
+        cout<<"Enter your choice: ";
+        cin>>choice_option;
+        switch(choice_option)
+        {
+            case 1:
+            {
+                cout<<"You have selected more information about the game."<<endl;
+                cout<<"-------------------------------------------------------------------------------------------------------------------------------"<<endl;
+                cout<<"There are three modes of the game"<<endl;
+                cout<<"1. Easy mode where the user has to guess the number between 0 to 9."<<endl;
+                cout<<"2. Medium mode where the user has to guess the number between 0 to 49."<<endl;
+                cout<<"3. Hard mode where the user has to guess the number between 0 to 99."<<endl;
+                break;
+            }
+            case 2:
+            {
+                cout<<"Select the mode of the game"<<endl;
+                cout<<"1. Easy"<<endl;
+                cout<<"2. Medium"<<endl;
+                cout<<"3. Hard"<<endl;
+                cout<<"Enter your choice: ";
+                cin>>select_mode;
+                switch(select_mode)
+                {
+                    case 1:
+                    {
+                        cout<<"You have selected the Easy mode"<<endl;
+                        cout<<"The game will start in 3 seconds"<<endl;
+                        cout<<"3"<<endl;
+                        cout<<"2"<<endl;
+                        cout<<"1"<<endl;
+                        cout<<"GO!"<<endl;
+                        for(i=0;i<3;i++)
+                        {
+                            cout<<"Enter the number between 0 to 9: ";
+                            cin>>number_easy;
+                            if(number_easy==Number_easy)
+                            {
+                                cout<<"Congratulation...."<<endl;
+                                break;
+                            }
+                            else
+                            cout<<"Wrong answer..."<<endl;
+                        }
+                        break;
+                    }
+                    case 2:
+                    {
+                        cout<<"You have selected the Medium mode"<<endl;
+                        cout<<"The game will start in 3 seconds"<<endl;
+                        cout<<"3"<<endl;
+                        cout<<"2"<<endl;
+                        cout<<"1"<<endl;
+                        cout<<"GO!"<<endl;
+                        for(i=0;i<3;i++)
+                        {
+                            cout<<"Enter the number between 0 to 49: ";
+                            cin>>number_medium;
+                            if(number_medium==Number_medium)
+                            {
+                                cout<<"Congratulation...."<<endl;
+                                break;
+                            }
+                            else
+                            cout<<"Wrong answer..."<<endl;
+                        }
+                        break;
+                    }
+                        case 3:
+                        {
+                            cout<<"You have selected the Hard mode"<<endl;
+                            cout<<"The game will start in 3 seconds"<<endl;
+                            cout<<"3"<<endl;
+                            cout<<"2"<<endl;
+                            cout<<"1"<<endl;
+                            cout<<"GO!"<<endl;
+                            for(i=0;i<3;i++)
+                            {
+                                cout<<"Enter the number between 0 to 99: ";
+                                cin>>number_hard;
+                                if(number_hard==Number_hard)
+                                {
+                                    cout<<"Congratulation...."<<endl;
+                                    break;
+                                }
+                                else
+                                cout<<"Wrong answer..."<<endl;
+                            }
+                            break;
+                        }
+                        default:
+                        {
+                            cout<<"You have selected an invalid option"<<endl;
+                            break;
+                        } 
+                }
+                break;
+            }
+        
+            case 3:
+            break;
+            default:
+            cout<<"Enter a valid choice"<<endl;
+            break;     
+        }     
+        cout<<"Do you want to play again?(y/n)"<<endl;
+        cin>>repeat;
+}while(repeat=='y'||repeat =='Y');
+}
