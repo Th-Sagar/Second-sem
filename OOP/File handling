@@ -1,0 +1,64 @@
+//#include<iostream>
+//#include<fstream>
+//#include<string.h>
+//using namespace std;
+//int main()
+//{
+// int b,i;
+// char *str="this is me .hi there ",ch;
+// ofstream filein("write.txt");
+// b=strlen(str);
+// for(i=0;i<b;i++)
+// {
+// filein.put(str[i]);
+// }
+// filein.close();
+// cout<<"written"<<endl;
+// ifstream fileout("write.txt");
+// while(fileout)
+// {
+// fileout.get(ch);
+// cout<<ch;
+// }
+//}
+
+
+// #include<iostream>
+// #include<fstream>
+// using namespace std;
+// int main()
+// {
+// char name[20];
+// int ph;
+// ofstream innn("test12.txt");
+// cout<<"Enter name and phone."<<endl;
+// cin>>name>>ph;
+// innn<<name<<" "<<ph;
+// cout<<"data is written "<<endl;
+// innn.close();
+// ifstream hii("test12.txt");
+// hii>>name>>ph;
+// cout<<"Name :"<<name<<endl<<"Phone no :"<<ph;
+// }
+
+// #include<iostream>
+// #include<fstream>
+// #include<string.h>
+// using namespace std;
+// int main()
+// {
+//     int a=3;
+//     float b=4.555;
+//     char *s="hello";
+
+//     // ofstream infile("data.txt");
+//     // infile<<a<<""<<b<<""<<s;
+//     // cout<<"data store !!!!"<<endl;
+//     // infile.close();
+
+//     ifstream so("data.txt");
+//     so>>a>>b>>s;
+//     cout<<"a :"<<a<<"b :"<<b<<"s :"<<s;
+//     cout<<"data get ::"<<endl;
+//     so.close();
+// }
