@@ -1,0 +1,153 @@
+//i	Write a program defining a class named toCovert with one data member. Use necessary member functions for input and output which converts Celsius into Fahrenheit. Write a main() program to exercise this class. 
+#include<iostream>
+using namespace std;
+class toConvert{
+    private :
+    int c;
+    float f;
+public :
+void getdata(int a)
+{
+
+    c=a;
+}
+ void display()
+ {
+     cout<<"temp in fahrenheit = "<< f;
+ }
+ void read()
+ { 
+    f=(c*9/5)+32;
+ }
+};
+int main(){
+    toConvert con;
+    int temp;
+    cout<<"enter temperature in celsius :";
+    cin>> temp; 
+   con.getdata(temp);
+   con.read();
+   con.display();
+
+ }
+//ii	Write a program defining a class named Account with three data members for account no, name and balance. Define the user needed functions for input and output to display ‘N’ account holders. Write a program to exercise this class. 
+#include<iostream>
+#include<iomanip>
+using namespace std;
+class account{
+    private :
+    int acc_no,bal;
+    char name[40];
+
+    public :
+    void datain()
+    {
+    
+        
+            cout<<"enter bank no :";
+            cin>>acc_no;
+            cout<<"enter name :";
+            cin>>name;
+            cout<<"enter balance :";
+            cin>>bal;
+            
+            
+    }
+    void datashow()
+        {
+      
+  
+    
+        
+        cout<<setw(20)<<acc_no<<setw(20)<<name<<setw(20)<<bal<<endl;
+        
+
+        }
+
+};
+int main ()
+{
+    account acc1[10];
+    int n,i;
+       cout<<"enter any no :";
+        cin>>n;
+
+  for(i=0;i<n;i++)
+  {
+    acc1[i].datain();
+  }
+        cout<<setw(20)<<"Account number "<<setw(20)<<"Name "<<setw(20)<<"Balance "<<endl;
+  for(i=0;i<n;i++)
+  {
+    acc1[i].datashow();
+  }
+}
+
+//iv	Write a program defining class having two data members. Define a user needed function for input, comparison and also use nested member function to display the greater among two numbers. Use the member function outside the class definition. Write a main() to exercise this function. 
+#include<iostream>
+using namespace std;
+class data
+{
+ private :
+
+int n,m;
+public :
+
+void getdata()
+{
+    cout<<"enter any two nos :";
+    cin>>n>>m;
+
+}
+int process()
+{
+    if(n<m)
+    return m;
+    else 
+    return n;
+}
+void output()
+{
+
+    cout<<"greater number :"<<process();
+}
+};
+int main ()
+{
+    data d1;
+    d1.getdata();
+    d1.output();
+}
+
+//v	Define two private data members feet and inch. Use necessary function for input/output. Define another function Sum which finds the sum of two distances passing object. Write a main() program to exercise this class. 
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Data{
+    private:
+        int feet, inch;
+    public:
+        int l;
+        void getData(){
+            cout << "enter feet and inch: ";
+            cin >> feet >> inch;
+            l = feet * 12 + inch;
+        }
+        void len(Data, Data);
+};
+
+void Data::len(Data datA, Data datB){
+    int f, i;
+    f = (datA.l + datB.l) / 12;
+    i = (datA.l + datB.l) % 12;
+    cout << "Length: " << f << "'" << i << "\""; 
+}
+
+int main()
+{
+    Data dat1, dat2, l;
+    dat1.getData();
+    dat2.getData();
+    l.len(dat1, dat2);
+}
