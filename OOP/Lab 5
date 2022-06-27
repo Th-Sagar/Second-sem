@@ -1,0 +1,338 @@
+//Write a program defining a class named Complex with two data member real and imaginary . Use necessary member functions for input/ output and 
+//define a member function that adds the two complex objects and return object. Also display the result using a member function display().
+
+#include <iostream>
+using namespace std;
+
+class Complex{
+    private:
+        int r, i;
+    public:
+        void getInput(int x, int y){
+            r = x;
+            i = y;
+        }
+        
+        Complex sum(Complex comA, Complex comB){
+            Complex s;
+            s.r = comA.r + comB.r;
+            s.i = comA.i + comB.i;
+            cout << "First Complex No: " << comA.r << "+" << comA.i << "i" << endl;
+            cout << "Second Complex No: " << comB.r << "+" << comB.i << "i" << endl;
+            return s;
+        }
+        
+        void display(){
+            cout <<"Sum :"<< r << "+" << i << "i";
+        }
+};
+
+main(){
+    Complex comA, comB, so;
+    int x, y,a,b;
+    cout << "Enter real and imaginary no: ";
+    cin >> x >> y;
+    comA.getInput(x, y);
+    cout << "Enter real and imaginary no: ";
+    cin >> a >> b;
+    comB.getInput(a, b);
+    so = so.sum(comA, comB);
+    so.display();
+}
+
+
+ii)
+
+//Write a program defining a class named Account with account no and balance. Define the necessary functions to get data, display and money transfer. Prompt the user to transfer money from one account to another and adjust the balance. Solve this problem using pass objects by reference. Write a main() program to exercise this. (using inside and outside the class) 
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Account{
+    private:
+        int accNo, bal;
+    public:
+         void getData();
+        
+        void display();
+        void moneyTransfer(Account &acc, int yourAcc, int toAcc, int toBal);
+};
+ void Account :: getData(){
+            cout << "Enter account No: ";
+            cin >> accNo;
+            cout << "Enter balance: ";
+            cin >> bal;
+        }
+ void Account :: display(){
+            cout << setw(10) << accNo << setw(10) << bal << endl;
+        }
+ void Account :: moneyTransfer(Account &acc, int yourAcc, int toAcc, int toBal)
+{
+            if(acc.accNo == yourAcc){
+                acc.bal = acc.bal - toBal;
+            }
+            if(acc.accNo == toAcc){
+                acc.bal = acc.bal + toBal;
+            }
+        }
+int main(){
+    Account acc[20], op;
+    int n;
+    cout << "How many: ";
+    cin >> n;
+    
+    for(int i=0; i<n; i++){
+        acc[i].getData();
+    }
+    
+    cout << setw(10) << "\nAccount No" << setw(10) << "Balance" << endl;
+    for(int i=0; i<n; i++){
+        acc[i].display();
+    }
+    
+    int yourAcc, toAcc, toBal;
+    cout << "\nEnter your acc No: ";
+    cin >> yourAcc;
+    
+    cout << "Enter recepient accNo and bal to be transferred: ";
+    cin >> toAcc >> toBal;
+    
+    for(int i = 0; i < n; i++){
+        op.moneyTransfer(acc[i], yourAcc, toAcc, toBal);
+    }
+    
+    cout << setw(10) << "\nAccount No" << setw(10) << "Balance" << endl;
+    for(int i=0; i<n; i++){
+        acc[i].display();
+    }    
+}
+
+
+iii) // //Create a class named Test and perform class test for assigning values and copy constructor and needed function for display. Use copy constructor to pass two values code and price. 
+// #include<iostream>
+// using namespace std;
+// class Test
+// {
+//     private:
+//         int code, price;   //data members
+    
+//     public:
+//         Test(int x1, int y1)
+//         {
+//             code = x1;
+//             price = y1;
+//         }
+    
+//         /* Copy constructor */
+//         Test (Test &ref)
+//         {
+//             code = ref.code;
+//             price = ref.price;
+//         }
+        
+//         void display()
+//         {
+//             cout<<"\tcode: "<<code<<endl<<"\tprice: "<<price<<endl;
+//         }
+// };
+// /* main function */
+// int main()
+// {
+//     int cod,pr;
+//     cout<<"Enter code: ";
+//     cin>>cod;
+//     cout<<"Enter price: ";
+//     cin>>pr;
+//     Test t1(cod,pr);     // Normal constructor
+//     Test t2 = t1;      // Copy constructor
+//     cout<<"Normal constructor : "<<endl;
+//     t1.display();
+//     cout<<"Copy constructor : "<<endl;
+//     t2.display();
+//     return 0;
+// }
+// iv Create a class named 'Rectangle' with two data members- length and breadth and a function to calculate the area which is 'length*breadth'. The class has three constructors which are : 1 - having no parameter - values of both length and breadth are assigned zero. 2 - having two numbers as parameters - the two numbers are assigned as length and breadth respectively. 3 - having one number as parameter - both length and breadth are assigned that number. Now, create objects of the 'Rectangle' class having none, one and two parameters and print their areas. 
+#include<iostream>
+using namespace std;
+class Rectangle {
+    private :
+    float length,breadth,area;
+    public :
+    Rectangle()
+    {
+        length=0;
+        breadth=0;
+    }
+    Rectangle( float len,float bre)
+    {
+        length=len;
+        breadth=bre;
+    }
+    Rectangle(float leng)
+    {
+        length=leng;
+        breadth=leng;   
+    }
+    void process()
+    {
+        cout<<endl<<endl;
+     cout<<"Length : "<<length<<endl<<"Breadth :"<<breadth <<endl;
+    area = length * breadth;
+    cout<<"Area : "<<area<<endl;
+    }
+};
+
+int main ()
+{
+    Rectangle r1 ;
+    Rectangle r2(2,3);
+    Rectangle r3(3);
+    r1.process();
+    r2.process();
+    r3.process();
+   
+}
+//v Suppose you have a Piggie Bank with an initial amount of $50 and you have to add some more amount to it. Create a class 'AddAmount' with a data member named 'amount' with an initial value of $50. Now make two constructors of this class as follows: 1 - without any parameter - no amount will be added to the Piggie Bank 2 - having a parameter which is the amount that will be added to the Piggie Bank Create an object of the 'AddAmount' class and display the final amount in the Piggie Bank. 
+#include<iostream>
+using namespace std;
+class AddAmount
+{
+private:
+int amount ;
+public :
+AddAmount()
+{
+    amount= 50;
+}
+AddAmount(AddAmount a,int n)
+{
+   
+    amount=a.amount+n;
+}
+void display()
+{ 
+
+    cout<<"Amount : $"<<amount<<endl;
+}
+
+
+};
+int main()
+{
+    AddAmount aa;
+    int a;
+    aa.display();
+    cout<<"enter the amount to be added :";
+    cin>>a;
+    AddAmount b(aa,a);
+    b.display();
+}
+
+
+//vi. Create a class Rectangle with two data members length and breadth. Declare the function needed for area and display. Use parametrized constructor (implicitly and explicitly) to solve this problem
+#include<iostream>
+using namespace std;
+class Rectangle
+{
+  private :
+   int length,breadth,area;
+    public : 
+  Rectangle(int l,int b)
+   {
+     length=l;
+      breadth=b;
+    }
+int process()
+{
+    area=length*breadth;
+    return area;
+}
+void dataprocess()
+{
+    cout<<endl<<"Area :"<<process();
+}};
+int main()
+{
+  int l,b;
+  cout<<"enter length and breadth : "<<endl;
+  cin>>l>>b;
+  cout<<endl<<"Explicit call :"<<endl;
+  Rectangle r= Rectangle(l,b);
+  r.dataprocess();
+  cout<<endl<<"Implicit call :"<<endl;
+  Rectangle r1(l,b);
+  r1.dataprocess();
+
+    // Rectangle r1(2,3);
+    // r1.process();
+    // r1.dataprocess();
+    // Rectangle r2= Rectangle(2,3);
+    // r2.process();
+    // r2.dataprocess();
+}
+//vii. Create a class Employee with data id, name, salary. Create constructor for those data and display only those employees whose salary is greater than 5000. 
+#include<iostream>
+#include<string>
+#include<iomanip>
+using namespace std;
+class Employee
+{
+   private :
+   int id_no,salary;
+  string name;
+public :
+Employee( int id,string nam,int sal){
+    id_no= id;
+    name=nam;
+    salary = sal;}
+void display(){
+    if(salary>5000)
+     cout<<setw(20)<<id_no<<setw(20)<<name<<setw(20)<<salary<<endl;
+}
+};
+int main()
+{
+    Employee e1(1,"Ram",400);
+    Employee e2(2,"Sita",40011);
+    Employee e3(3,"Geeta",40000);
+    cout<<"Employees data :"<<endl;
+    cout<<setw(20)<<"ID NO "<<setw(20)<<"NAME"<<setw(20)<<"SALARY"<<endl;
+    e1.display();
+    e2.display();
+    e3.display();
+}
+
+// viii. Create a class Add with the data length and breadth. Create constructor for those data and display the result of sum of area of two rectangles (finding the area of two rectangles separately and sum the area). Also create destructor.
+
+#include<iostream>
+using namespace std;
+class Add
+{
+private :
+int length,breadth;
+public :
+Add(int l,int b)
+{
+    length= l;
+    breadth = b;
+    cout<<"Costructor "<<endl;
+ 
+}
+void display(Add r1, Add r2)
+{
+    int sum;
+    sum=(r1.length*r1.breadth)+(r2.length*r2.breadth);
+    cout<<endl<<"sum :"<<sum<<endl;
+}
+~Add()
+{
+    cout<<"Destructor "<<endl;
+}
+};
+int main()
+{
+    Add t(2,4);
+    Add t1(3,5);
+    t.display(t,t1);
+
+}
