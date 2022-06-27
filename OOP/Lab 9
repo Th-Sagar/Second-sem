@@ -1,0 +1,197 @@
+//1)	Create a function called MAX( ) that returns the greater element of the two numbers. Make this function to a template so that it can work with any numerical type. Write a main() program that applies this function to data of various type.
+#include<iostream>
+using namespace std;
+template<class T>
+void Max(T a, T b)
+{
+if (a>b)
+{
+cout<<a <<" is greater "<<endl;
+}
+else 
+cout<<b <<" is greater "<<endl;
+}
+int main()
+{
+Max(2,3);
+Max(2.33,3.333);
+}
+
+//2)	Create a function called SUM( ) that returns the sum of the elements of an array. Make this function into a template so that it can work with any numerical type. Write a main ( ) program that applies this function to data of various type.
+#include<iostream>
+using namespace std;
+template <class T>
+void Sum(T arr[], int b)
+{ 
+    T sum=0;
+for(int i=0;i<b;i++)
+{
+    sum+=arr[i]; 
+} 
+ cout<<sum<<endl;
+}
+int main()
+ {
+    int maa[]={20,30,50};
+    Sum(maa,3);
+    float m[]={2.3,3.3,4.3};
+    Sum(m,3);
+}
+
+//3)	Write a class template for implementation of stack to push and pop of different data types.
+#include<iostream>
+using namespace std;
+template <class T>
+class stack
+{
+    T arr[100];
+    int tos;
+    public:
+    stack()
+    {
+        tos=-1;
+    }
+    void push(T a)
+    {
+        arr[++tos]=a;
+    }
+    T pop()
+    {
+        return arr[tos--];
+    }
+};  
+int main()
+{
+    stack<int> s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    cout<<"Number poped"<<s1.pop()<<endl;
+    cout<<"Number poped"<<s1.pop()<<endl;
+    cout<<"Number poped"<<s1.pop()<<endl;
+}
+//Write a class template for queue class. Assume the programmer using the queue won't make mistakes, like exceeding the capacity of the queue, or trying to remove an item when the queue is empty. Define several queues of different data types and insert and remove data from them.
+#include<iostream>
+using namespace std;
+template <class T>
+class queue
+{
+    T arr[100];
+    int tos;
+    public:
+    queue()
+    {
+        tos=-1;
+    }
+    void push(T a)
+    {
+        arr[++tos]=a;
+    }
+    T pop()
+    {
+        return arr[tos--];
+    }
+};  
+int main()
+{
+    queue<int> s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    queue<float> s2;
+    s2.push(30.45);
+    cout<<"Number poped : "<<s1.pop()<<endl;
+    cout<<"Number poped : "<<s1.pop()<<endl;
+    cout<<"Number poped : "<<s2.pop()<<endl;
+}
+
+
+     //Modify the stack class given in the previous lab to add the exception when user tries to add item while the stack is full and when user tries to add item while the stack is empty. Throw exception in both of the cases and handle these exceptions.
+#include<iostream>
+#define MAX 2
+using namespace std;
+template <class T>
+class queue
+{
+    T arr[MAX];
+    int tos;
+    public:
+    queue()
+    {
+        tos=-1;
+    }
+    void push(T a)
+    {
+        try 
+        {
+            if (tos<MAX)
+             arr[++tos]=a;
+             
+            else
+                throw a;
+        }
+        catch(T a)
+        {
+            cout<<"Queue is full"<<endl;
+        }
+    }
+    T pop()
+    {
+        try
+        {
+         if(tos==-1)
+            throw 1;  
+         else
+            return arr[tos--];
+        }
+        catch(T a)
+        {
+            cout<<"Queue is empty"<<endl;
+            return 0;
+        }
+            
+    
+     }
+}; 
+int main()
+{
+    queue<int> s1;
+    s1.push(10);
+    s1.push(20);
+    s1.push(30);
+    s1.push(100);
+    // s1.push(200);
+    // s1.push(300);
+    queue<float> s2;
+    s2.push(10.5);
+    s2.push(20.5);
+    // s2.push(30.5);
+    cout<<"Number poped : "<<s1.pop()<<endl;
+    // cout<<"Number poped : "<<s1.pop()<<endl;
+    // cout<<"Number poped : "<<s1.pop()<<endl;
+    cout<<"Number poped : "<<s2.pop()<<endl;
+    // cout<<"Number poped : "<<s2.pop()<<endl;
+}
+
+//Write any program that demonstrates the use of multiple catch handling, re-throwing an exception, and catching all exception.
+#include<iostream>
+using namespace std;
+int main()
+{
+    try
+    {
+       try
+       {
+           throw 20;
+       }
+       catch(int n)
+       {
+           cout<<"Handle paritally "<<endl;
+           throw;
+       }
+    }
+    catch(int n)
+    {
+        cout<<"Handle fully ";
+    }
+}
