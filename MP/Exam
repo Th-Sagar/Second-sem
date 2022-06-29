@@ -1,0 +1,175 @@
+1.    Use subroutine to compute the following in 8085 assembly language:
+04H × (04H + 05H – FFH + ABH – EFH + F7H) and save the resultant at the location 3050H.
+-    Check for Sign and Carry Flags.
+-    If both are SET, store the carry and sign bits at register C and L respectively.
+-    Then create another subroutine to multiply the resultant value at 3050H with 0AH and store the result at 3051H.
+
+MVI L,00H
+MVI C,00H
+MVI B,0AH
+CALL SONS
+
+JNC NEXT
+INR C
+NEXT : INR L
+CALL MULTIPLY 
+OUT 01H
+HLT
+
+SONS: ACI 04H
+ACI 05H
+ACI AB
+ACI F7
+SBI FFH
+SBI EFH
+STA 3050H
+RET
+
+MULTIPLY : ACI 0AH
+    DCR B
+    JNZ MULTIPLY
+    RET
+    
+    
+Write a program in 8086 assembly language to check if two entered single digit numbers are EQUAL or NOT. 
+Your program should display the message, “YUP. THE TWO NUMBERS ARE EQUAL” if the two entered numbers are equal
+OR
+display the message, “NOPE. THE TWO NUMBERS ARE NOT EQUAL.”
+
+data segment 
+    msg db "Enter 1st no$"
+    msg1 db 10,13,"Enter 2nd no$"
+    msg2 db 10,13,"YUP. THE TWO NUMBERS ARE EQUAL$"
+    msg3 db 10 ,13,"NOPE. THE TWO NUMBERS ARE NOT EQUAL.$"
+code segment
+    assume cs: code ds:data
+    begin:
+    mov ax, @data
+    mov ds,ax  
+    
+    lea dx,msg
+    mov ah,9 
+    int 21h
+    
+    mov ah,1
+    int 21h
+    
+    mov cl,al  
+    
+    lea dx,msg1
+    mov ah,9 
+    int 21h
+    
+    mov ah,1
+    int 21h
+    
+    mov dl,al  
+    
+    cmp cl,dl
+    
+    je equal
+    
+    lea dx,msg3
+    mov ah,9
+    int 21h
+    
+    jmp exit
+    
+    equal:
+    lea dx, msg2
+    mov ah,9
+    int 21h
+    
+    exit:mov ah,4ch
+    int 21h
+    
+    end begin
+    
+2.    Write an assembly language program in 8086 to print the following string in reverse:
+"Shawty's like a melody in my head that I can't keep out Got me singin' like"
+(Length of string: 75)
+
+data segment 
+    ishan db "Shawty's like a melody in my head that I can't keep out Got me singin' like $"  
+    ends
+code segment
+    assume cs:code ds:data
+    begin:
+    mov ax,@data
+    mov ds,ax 
+    
+    mov si, offset ishan
+    mov cx,75 
+    
+    loop1: mov bx,[si] 
+    push bx
+    inc si
+    loop loop1
+    mov cx,75
+    
+    loop2:pop dx
+    mov ah,2h
+    int 21h
+    loop loop2
+  
+    end begin
+ 
+;2.    Write an assembly language program in 8086 to display:
+;"Que neustra cancion no deje de latir, Solo con tu amor yo puedo existir (recuerdame)."
+;"Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare."
+;
+data segment 
+    gaurav_dada db "Que neustra cancion no deje de latir, Solo con tu amor yo puedo.$" 
+    soraj_raja db 10,13,"ishan ishan ishan is a god Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare.$"
+ends
+code segment 
+    assume cs: code ds: data
+    begin:
+     mov ax,@data
+     mov ds,ax
+     
+     lea dx, gaurav_dada
+     mov ah,9
+     int 21h
+     
+     
+     lea dx,soraj_raja
+     mov ah,9
+     int 21h
+     
+     
+     mov ah,4ch
+     int 21h
+     
+     
+     end begin
+    
+1.	A set of 10 readings is stored from memory location 2050H. The readings are expected to be POSITIVE.
+Write an assembly language program in 8085 to
+-	Check each reading to determine whether it is positive or negative.
+-	Reject all negative readings.
+-	Add all the positive readings and display the sum at the output port 05H. 
+#Data:	7CH, A5H, 77H, 88H, 0AH, AAH, 37H, 4AH, 06H, F6H
+
+MVI B,00H
+MVI C, 0AH
+LXI H ,2050H
+REPEAT :MOV A,M
+INX H
+RAL
+JC NEGATIVE 
+RAR
+ADD B
+MOV B,A
+DCR C
+JNZ REPEAT
+OUT 05H
+
+NEGATIVE : DCR C
+	JNZ REPEAT
+	HLT
+
+
+
+
+
