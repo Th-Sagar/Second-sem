@@ -1,4 +1,149 @@
-1.    Use subroutine to compute the following in 8085 assembly language:
+A1. A set of 10 readings is stored from memory location 2050H. The readings are expected to be POSITIVE.
+Write an assembly language program in 8085 to
+-    Check each reading to determine whether it is positive or negative.
+-    Reject all negative readings.
+-    Add all the positive readings and display the sum at the output port 05H. 
+#Data:    7CH, A5H, 77H, 88H, 0AH, AAH, 37H, 4AH, 06H, F6H
+
+MVI B,00H
+MVI C, 0AH
+LXI H ,2050H
+REPEAT :MOV A,M
+INX H
+RAL
+JC NEGATIVE 
+RAR
+ADD B
+MOV B,A
+DCR C
+JNZ REPEAT
+OUT 05H
+
+NEGATIVE : DCR C
+    JNZ REPEAT
+    HLT
+
+A2. Write an assembly language program in 8086 to print the following string in reverse:
+“Supercalifragilisticexpialidocious coz you’re an alien you’re thought so foreign”
+(Length of string: 80)
+
+data segment 
+    msg db "Supercalifragilisticexpialidocious coz you’re an alien you’re thought so foreign $"  
+    ends
+code segment
+    assume cs:code ds:data
+    begin:
+    mov ax,@data
+    mov ds,ax 
+    
+    mov si, offset msg
+    mov cx,80 
+    
+    loop1: mov bx,[si] 
+    push bx
+    inc si
+    loop loop1
+    mov cx,75
+    
+    loop2:pop dx
+    mov ah,2h
+    int 21h
+    loop loop2
+  
+    end begin
+
+B1.Write an assembly program in 8085 to add the two numbers: 80H and FFH. 
+Then perform the following conditions:
+Conditions:
+Check if the resultant is POSITIVE or NEGATIVE.
+i.If POSITIVE:
+	a.Add the resultant with itself.
+	b.Check if carry exists or not.
+	c.If CARRY:
+		•Complement A’s content.
+		•Rotate left without carry 5 times.
+		•Store the result in D register.
+		•Terminate
+	d.If NO CARRY:
+		•Rotate right with carry 3 times.
+		•Store the result in D register.
+		•Terminate.
+
+ii.	If NEGATIVE:
+	a.Add the result with itself.
+	b.Complement A’s content.
+	c.Rotate left without carry 5 times.
+	d.Store the result in D register.
+	e.Terminate.
+
+MVI B,00H
+MVI A,80H
+ACI FFH
+
+RAL 
+JC NEGATIVE 
+RAR
+MOV B,A
+ADD B
+JNC CARRY 
+CMA
+RLC
+RLC
+RLC
+RLC
+RLC
+MOV D,A
+HLT
+
+CARRY :RAR
+RAR
+RAR
+MOV D,A
+HLT
+
+NEGATIVE :RAR
+MOV B,A
+ADD B
+CMA 
+RLC
+RLC
+RLC
+RLC
+RLC
+MOV D,A
+HLT
+
+B2. Write an assembly language program in 8086 to display:
+"Que neustra cancion no deje de latir, Solo con tu amor yo puedo existir (recuerdame)."
+"Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare."
+
+data segment 
+    gaurav_dada db "Que neustra cancion no deje de latir, Solo con tu amor yo puedo.$" 
+    soraj_raja db 10,13,"ishan ishan ishan is a god Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare.$"
+ends
+code segment 
+    assume cs: code ds: data
+    begin:
+     mov ax,@data
+     mov ds,ax
+     
+     lea dx, gaurav_dada
+     mov ah,9
+     int 21h
+     
+     
+     lea dx,soraj_raja
+     mov ah,9
+     int 21h
+     
+     
+     mov ah,4ch
+     int 21h
+     
+     
+     end begin
+
+C1.Use subroutine to compute the following in 8085 assembly language:
 04H × (04H + 05H – FFH + ABH – EFH + F7H) and save the resultant at the location 3050H.
 -    Check for Sign and Carry Flags.
 -    If both are SET, store the carry and sign bits at register C and L respectively.
@@ -16,12 +161,17 @@ CALL MULTIPLY
 OUT 01H
 HLT
 
-SONS: ACI 04H
+SONS: 
+MVI D,03H
+ACI 04H
 ACI 05H
 ACI AB
 ACI F7
 SBI FFH
 SBI EFH
+MUL:ADD A
+DCR D
+JNZ MUL
 STA 3050H
 RET
 
@@ -29,9 +179,8 @@ MULTIPLY : ACI 0AH
     DCR B
     JNZ MULTIPLY
     RET
-    
-    
-Write a program in 8086 assembly language to check if two entered single digit numbers are EQUAL or NOT. 
+
+C2.Write a program in 8086 assembly language to check if two entered single digit numbers are EQUAL or NOT. 
 Your program should display the message, “YUP. THE TWO NUMBERS ARE EQUAL” if the two entered numbers are equal
 OR
 display the message, “NOPE. THE TWO NUMBERS ARE NOT EQUAL.”
@@ -84,8 +233,35 @@ code segment
     int 21h
     
     end begin
-    
-2.    Write an assembly language program in 8086 to print the following string in reverse:
+
+D1. Write an assembly language program in 8085 to transfer 10 data from 5000H
+    to 5100H only if the numbers are greater than 80H, else transfer them to the table starting from 5200H.
+    #Data: 47H, B7H, FFH, 10H, 79H, A7H, 91H, 21H, 81H, 88H
+
+	LXI H, 5000H
+	LXI D, 5100H
+	LXI B, 5200H
+
+XYZ: 	MOV A,M
+	CPI 80H
+	JC ABC
+	STAX D
+	INX H
+	INX D
+	MOV A,L
+	CPI 09H
+	JNZ XYZ
+	HLT
+
+ABC:	STAX B
+	INX H
+	INX B
+	MOV A,C
+	CPI 09H
+	JNZ XYZ
+	HLT
+
+D2. Write an assembly language program in 8086 to print the following string in reverse:
 "Shawty's like a melody in my head that I can't keep out Got me singin' like"
 (Length of string: 75)
 
@@ -113,63 +289,3 @@ code segment
     loop loop2
   
     end begin
- 
-;2.    Write an assembly language program in 8086 to display:
-;"Que neustra cancion no deje de latir, Solo con tu amor yo puedo existir (recuerdame)."
-;"Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare."
-;
-data segment 
-    gaurav_dada db "Que neustra cancion no deje de latir, Solo con tu amor yo puedo.$" 
-    soraj_raja db 10,13,"ishan ishan ishan is a god Si en tu mente vivo stoy (recuerdame) mis suenos yo ted oy, te Ileve en mi Corazon Y te acomapnare.$"
-ends
-code segment 
-    assume cs: code ds: data
-    begin:
-     mov ax,@data
-     mov ds,ax
-     
-     lea dx, gaurav_dada
-     mov ah,9
-     int 21h
-     
-     
-     lea dx,soraj_raja
-     mov ah,9
-     int 21h
-     
-     
-     mov ah,4ch
-     int 21h
-     
-     
-     end begin
-    
-1.	A set of 10 readings is stored from memory location 2050H. The readings are expected to be POSITIVE.
-Write an assembly language program in 8085 to
--	Check each reading to determine whether it is positive or negative.
--	Reject all negative readings.
--	Add all the positive readings and display the sum at the output port 05H. 
-#Data:	7CH, A5H, 77H, 88H, 0AH, AAH, 37H, 4AH, 06H, F6H
-
-MVI B,00H
-MVI C, 0AH
-LXI H ,2050H
-REPEAT :MOV A,M
-INX H
-RAL
-JC NEGATIVE 
-RAR
-ADD B
-MOV B,A
-DCR C
-JNZ REPEAT
-OUT 05H
-
-NEGATIVE : DCR C
-	JNZ REPEAT
-	HLT
-
-
-
-
-
